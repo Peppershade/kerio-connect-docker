@@ -26,6 +26,7 @@ RUN ln -s /bin/true /sbin/systemctl
 RUN dpkg -i /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb && rm /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb
 RUN ln -s ${CONNECT_HOME}/sendmail /usr/sbin/sendmail
 COPY config/kerio-connect.service /etc/systemd/system/kerio-connect.service
+RUN ln -s /etc/init.d/supervisor /sbin/systemctl
 
 # Store hacks
 RUN mkdir -p \
