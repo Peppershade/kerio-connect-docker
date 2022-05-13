@@ -6,7 +6,8 @@ CONNECT_BUILD=$(grep 'ENV CONNECT_BUILD' Dockerfile | awk {'print $3'})
 CONNECT_HOME=$(grep 'ENV CONNECT_HOME' Dockerfile | awk {'print $3'})
 
 THIS_HOME=$(pwd)
-IMAGE=${CONNECT_NAME}:latest
+IMAGE=${CONNECT_NAME}:${CONNECT_VERSION}.${CONNECT_BUILD}
+IMAGE_2=${CONNECT_NAME}:latest
 
 function printBanner {
 	echo "**************************"
@@ -16,7 +17,7 @@ function printBanner {
 
 function buildContainer {
 	echo "Starting build..."
-	docker buildx build -t ${IMAGE} .
+	docker buildx build -t ${IMAGE} -t ${IMAGE_2} .
 }
 
 function removeContainer {
