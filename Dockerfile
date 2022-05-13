@@ -20,7 +20,7 @@ ADD http://cdn.kerio.com/dwn/connect/connect-${CONNECT_VERSION}-${CONNECT_BUILD}
 # Install and setup project dependencies
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN echo root:kerio | chpasswd
-RUN apt-get -qqy update && apt-get -qqy install curl lsof supervisor sysstat cryptsetup lsb-release console-setup-mini locales && apt-get clean
+RUN apt-get -qqy update && apt-get -qqy install curl lsof supervisor sysstat cryptsetup lsb-release console-setup-mini locales ifconfig && apt-get clean
 RUN locale-gen en_US en_US.UTF-8
 RUN ln -s /bin/true /sbin/systemctl
 RUN dpkg -i /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb && rm /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb
