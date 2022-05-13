@@ -25,7 +25,7 @@ RUN locale-gen en_US en_US.UTF-8
 RUN ln -s /bin/true /sbin/systemctl
 RUN dpkg -i /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb && rm /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb
 CMD ["/usr/bin/supervisord"]
-RUN supervisor start kerio-connect
+RUN supervisorctl start kerio-connect
 RUN ln -s ${CONNECT_HOME}/sendmail /usr/sbin/sendmail
 
 # Store hacks
