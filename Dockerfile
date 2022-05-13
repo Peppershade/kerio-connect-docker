@@ -22,7 +22,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 RUN echo root:kerio | chpasswd
 RUN apt-get -qqy update && apt-get -qqy install curl lsof supervisor sysstat cryptsetup lsb-release console-setup-mini locales && apt-get clean
 RUN locale-gen en_US en_US.UTF-8
-RUN dpkg -i /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb && rm /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb; exit 0
+RUN dpkg -i /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb && rm /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb
 RUN ln -s ${CONNECT_HOME}/sendmail /usr/sbin/sendmail
 
 # Store hacks
