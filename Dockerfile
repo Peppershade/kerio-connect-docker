@@ -9,8 +9,8 @@ MAINTAINER Miroslav Osladil <mosladil@kerio.com>
 
 # Kerio Connect
 ENV CONNECT_NAME kerio-connect
-ENV CONNECT_VERSION 9.0.4
-ENV CONNECT_BUILD 1076
+ENV CONNECT_VERSION 9.4.1
+ENV CONNECT_BUILD 6249
 ENV CONNECT_BETA false
 ENV CONNECT_HOME /opt/kerio/mailserver
 
