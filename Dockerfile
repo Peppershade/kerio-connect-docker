@@ -56,9 +56,6 @@ RUN ln -s /data/charts.dat ${CONNECT_HOME} &&\
 	ln -s /data/store ${CONNECT_HOME} &&\
 	ln -s /data/users.cfg ${CONNECT_HOME}
 RUN rm -rf /data
-RUN chmod 777 /opt/kerio/mailserver/mailserver.cfg
-RUN chmod 777 /opt/kerio/mailserver/users.cfg
-RUN chmod 777 /opt/kerio/mailserver/store
 
 # Define mountable directories.
 VOLUME ["/data", "/opt/kerio/mailserver/store"]
