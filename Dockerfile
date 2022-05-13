@@ -28,14 +28,8 @@ RUN ln -s ${CONNECT_HOME}/sendmail /usr/sbin/sendmail
 COPY config/kerio-connect.service /etc/systemd/system/kerio-connect.service
 RUN rm /sbin/systemctl
 COPY config/kerio-connect /etc/init.d/kerio-connect
-RUN sleep 5
 RUN chmod 777 /etc/init.d/kerio-connect
 RUN chmod -R 777 /opt/kerio
-RUN /opt/kerio/mailserver/mailserver
-RUN service kerio-connect stop
-RUN chmod 777 /opt/kerio/mailserver/mailserver.cfg
-RUN chmod 777 /opt/kerio/mailserver/users.cfg
-RUN chmod 777 /opt/kerio/mailserver/store.cfg
 
 # Store hacks
 RUN mkdir -p \
@@ -62,6 +56,9 @@ RUN ln -s /data/charts.dat ${CONNECT_HOME} &&\
 	ln -s /data/store ${CONNECT_HOME} &&\
 	ln -s /data/users.cfg ${CONNECT_HOME}
 RUN rm -rf /data
+RUN chmod 777 /opt/kerio/mailserver/mailserver.cfg
+RUN chmod 777 /opt/kerio/mailserver/users.cfg
+RUN chmod 777 /opt/kerio/mailserver/store
 
 # Define mountable directories.
 VOLUME ["/data", "/opt/kerio/mailserver/store"]
