@@ -28,6 +28,7 @@ RUN ln -s ${CONNECT_HOME}/sendmail /usr/sbin/sendmail
 COPY config/kerio-connect.service /etc/systemd/system/kerio-connect.service
 RUN rm /sbin/systemctl
 COPY config/kerio-connect /etc/init.d/kerio-connect
+RUN chmod 777 /etc/init.d/kerio-connect
 
 # Store hacks
 RUN mkdir -p \
