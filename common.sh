@@ -16,7 +16,7 @@ function printBanner {
 
 function buildContainer {
 	echo "Starting build..."
-	docker build -t ${IMAGE} .
+	docker buildx build -t ${IMAGE} .
 }
 
 function removeContainer {
