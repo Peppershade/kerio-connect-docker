@@ -64,4 +64,4 @@ VOLUME ["/data", "/opt/kerio/mailserver/store"]
 EXPOSE 25 465 587 110 995 143 993 119 563 389 636 80 443 2000 4040 5222 5223 8800 8843
 
 # Start container
-CMD ["service kerio-connect start"]
+CMD ["/usr/bin/supervisord"]
