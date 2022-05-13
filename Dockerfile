@@ -4,7 +4,7 @@
 # https://github.com/mosladil/kerio-connect-docker
 # Use the Ubuntu LTS with Kerio Connect
 FROM ubuntu:latest
-MAINTAINER Robin Schmidt <robin@vboxx.nl>
+MAINTAINER Pepper <admin@peppershade.nl>
 
 # Kerio Connect
 ENV CONNECT_NAME kerio-connect
