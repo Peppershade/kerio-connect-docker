@@ -2,7 +2,8 @@ CONTAINER_ALREADY_STARTED="CONTAINER_ALREADY_STARTED_PLACEHOLDER"
 if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
     touch $CONTAINER_ALREADY_STARTED
     echo "-- First container startup --"
-    /usr/bin/supervisord
+    /usr/bin/supervisord > /dev/null 2>&1 &
+    sleep 10
     service kerio-connect stop
     chmod 777 /opt/kerio/mailserver/mailserver.cfg
     chmod 777 /opt/kerio/mailserver/users.cfg
