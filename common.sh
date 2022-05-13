@@ -7,7 +7,6 @@ CONNECT_HOME=$(grep 'ENV CONNECT_HOME' Dockerfile | awk {'print $3'})
 
 THIS_HOME=$(pwd)
 IMAGE=${CONNECT_NAME}:${CONNECT_VERSION}.${CONNECT_BUILD}
-IMAGE_LATEST=${CONNECT_NAME}:${CONNECT_VERSION}:latest
 
 function printBanner {
 	echo "**************************"
