@@ -5,7 +5,7 @@
 
 # Use the Ubuntu LTS with Kerio Connect
 FROM ubuntu:latest
-MAINTAINER Miroslav Osladil <mosladil@kerio.com>
+MAINTAINER Robin Schmidt <robin@vboxx.nl>
 
 # Kerio Connect
 ENV CONNECT_NAME kerio-connect
@@ -21,10 +21,9 @@ ADD http://cdn.kerio.com/dwn/connect/connect-${CONNECT_VERSION}-${CONNECT_BUILD}
 # Install and setup project dependencies
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN echo root:kerio | chpasswd
-RUN apt-get -qqy update && apt-get -qqy install curl lsof supervisor sysstat cryptsetup lsb-release console-setup-mini && apt-get clean
-RUN apt-get clean && apt-get update && apt-get install -y locales
+RUN apt-get -qqy update && apt-get -qqy install curl lsof supervisor sysstat cryptsetup lsb-release console-setup-mini locales && apt-get clean
 RUN locale-gen en_US en_US.UTF-8
-RUN --security=insecure dpkg -i /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb && rm /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb
+RUN dpkg -i /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb && rm /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb; exit 0
 RUN ln -s ${CONNECT_HOME}/sendmail /usr/sbin/sendmail
 
 # Store hacks
