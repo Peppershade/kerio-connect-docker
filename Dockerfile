@@ -29,8 +29,37 @@ COPY config/kerio-connect.service /etc/systemd/system/kerio-connect.service
 RUN rm /sbin/systemctl
 COPY config/kerio-connect /etc/init.d/kerio-connect
 
+# Store hacks
+RUN mkdir -p \
+	/data/dbSSL \
+	/data/license \
+	/data/settings \
+	/data/sslcert \
+	/data/store
+RUN touch \
+	/data/charts.dat \
+	/data/cluster.cfg \
+	/data/mailserver.cfg \
+	/data/stats.dat \
+	/data/users.cfg
+RUN rm -rf ${CONNECT_HOME}/license
+RUN ln -s /data/charts.dat ${CONNECT_HOME} &&\
+	ln -s /data/cluster.cfg ${CONNECT_HOME} &&\
+	ln -s /data/dbSSL ${CONNECT_HOME} &&\
+	ln -s /data/license ${CONNECT_HOME} &&\
+	ln -s /data/mailserver.cfg ${CONNECT_HOME} &&\
+	ln -s /data/settings ${CONNECT_HOME} &&\
+	ln -s /data/sslcert ${CONNECT_HOME} &&\
+	ln -s /data/stats.dat ${CONNECT_HOME} &&\
+	ln -s /data/store ${CONNECT_HOME} &&\
+	ln -s /data/users.cfg ${CONNECT_HOME}
+RUN rm -rf /data
+
+# Define mountable directories.
+VOLUME ["/data", "/opt/kerio/mailserver/store"]
+
 # Export ports
 EXPOSE 25 465 587 110 995 143 993 119 563 389 636 80 443 2000 4040 5222 5223 8800 8843
 
 # Start container
-CMD ["serivce kerio-connect start"]
+CMD ["/usr/bin/supervisord"]
