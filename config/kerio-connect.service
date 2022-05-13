@@ -1,0 +1,17 @@
+[Unit]
+Description=Kerio Connect
+Wants=network-online.target local-fs.target
+After=network.target network-online.target local-fs.target remote-fs.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/kms.pid
+Environment=LC_MESSAGES=
+ExecStart=/opt/kerio/mailserver/mailserver /opt/kerio/mailserver
+Restart=on-failure
+LimitCORE=infinity
+LimitSTACK=2097152
+LimitNOFILE=10240
+
+[Install]
+WantedBy=multi-user.target
