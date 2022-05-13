@@ -16,7 +16,7 @@ function printBanner {
 
 function buildContainer {
 	echo "Starting build..."
-	docker buildx build -t ${IMAGE} --allow security.insecure .
+	docker build -t ${IMAGE} .
 }
 
 function removeContainer {
