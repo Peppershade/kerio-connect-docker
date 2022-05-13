@@ -15,7 +15,6 @@ ENV CONNECT_HOME /opt/kerio/mailserver
 
 # Container content
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY config/kerio-connect /etc/init.d/kerio-connect
 ADD http://cdn.kerio.com/dwn/connect/connect-${CONNECT_VERSION}-${CONNECT_BUILD}/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.deb
 
 # Install and setup project dependencies
@@ -28,6 +27,7 @@ RUN dpkg -i /tmp/kerio-connect-${CONNECT_VERSION}-${CONNECT_BUILD}-linux-amd64.d
 RUN ln -s ${CONNECT_HOME}/sendmail /usr/sbin/sendmail
 COPY config/kerio-connect.service /etc/systemd/system/kerio-connect.service
 RUN rm /sbin/systemctl
+COPY config/kerio-connect /etc/init.d/kerio-connect
 
 # Export ports
 EXPOSE 25 465 587 110 995 143 993 119 563 389 636 80 443 2000 4040 5222 5223 8800 8843
