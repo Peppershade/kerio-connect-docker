@@ -29,6 +29,7 @@ COPY config/kerio-connect.service /etc/systemd/system/kerio-connect.service
 RUN rm /sbin/systemctl
 COPY config/kerio-connect /etc/init.d/kerio-connect
 RUN chmod 777 /etc/init.d/kerio-connect
+RUN chmod -R 777 /opt/kerio
 
 # Store hacks
 RUN mkdir -p \
