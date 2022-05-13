@@ -67,3 +67,4 @@ EXPOSE 25 465 587 110 995 143 993 119 563 389 636 80 443 2000 4040 5222 5223 880
 
 # Start container
 CMD ["/opt/kerio/mailserver/start-kerioconnect.sh"]
+ENTRYPOINT ["/bin/sh"]
