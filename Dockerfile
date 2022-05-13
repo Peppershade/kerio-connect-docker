@@ -30,7 +30,7 @@ RUN rm /sbin/systemctl
 COPY config/kerio-connect /etc/init.d/kerio-connect
 RUN chmod 777 /etc/init.d/kerio-connect
 RUN chmod -R 777 /opt/kerio
-RUN service kerio-connect start
+RUN /opt/kerio/mailserver/mailserver
 RUN chmod 777 /opt/kerio/mailserver/mailserver.cfg
 RUN chmod 777 /opt/kerio/mailserver/users.cfg
 RUN chmod 777 /opt/kerio/mailserver/store.cfg
