@@ -30,6 +30,8 @@ RUN rm /sbin/systemctl
 COPY config/kerio-connect /etc/init.d/kerio-connect
 RUN chmod 777 /etc/init.d/kerio-connect
 RUN chmod -R 777 /opt/kerio
+COPY config/start-kerioconnect.sh /opt/kerio/mailserver
+RUN chmod +x /opt/kerio/mailserver/start-kerioconnect.sh
 
 # Store hacks
 RUN mkdir -p \
@@ -64,4 +66,4 @@ VOLUME ["/data", "/opt/kerio/mailserver/store"]
 EXPOSE 25 465 587 110 995 143 993 119 563 389 636 80 443 2000 4040 5222 5223 8800 8843
 
 # Start container
-CMD ["/usr/bin/supervisord"]
+CMD ["/opt/kerio/mailserver/start-kerioconnect.sh"]
